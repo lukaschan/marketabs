@@ -1,0 +1,41 @@
+name: MarketTabs
+options:
+  bundleIdPrefix: com.markettabs
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1,2"          # iPhone + iPad
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: "1.0.0"
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  MarketTabs:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        excludes:
+          - ".github/**"
+          - "README.md"
+          - "project.yml"
+          - "build/**"
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: 市场速览
+        UILaunchScreen: {}                 # 空 LaunchScreen 即可，支持全屏与深浅色
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
