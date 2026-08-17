@@ -77,12 +77,16 @@ final class WebViewModel: NSObject, ObservableObject {
             },
             webView.observe(\.title, options: .new) { [weak self] _, change in
                 DispatchQueue.main.async {
-                    if let t = change.newValue, !t.isEmpty { self?.pageTitle = t }
+                    // \.title 是 String?，change.newValue 为 String??，先扁平化再解包
+                    if let t = change.newValue ?? nil, !t.isEmpty {
+                        self?.pageTitle = t
+                    }
                 }
             },
             webView.observe(\.URL, options: .new) { [weak self] _, change in
                 DispatchQueue.main.async {
-                    self?.currentHost = change.newValue?.host ?? ""
+                    // 同理 URL?? 扁平化后取 host
+                    self?.currentHost = (change.newValue ?? nil)?.host ?? ""
                 }
             }
         ]
